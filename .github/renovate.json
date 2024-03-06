@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "baseBranches": ["main"],
+  "enabledManagers": ["npm"],
+  "extends": ["config:base", "group:allNonMajor"],
+  "internalChecksFilter": "strict",
+  "prConcurrentLimit": 1,
+  "repositories": ["jinlee93/react-environment"],
+  "rangeStrategy": "bump",
+
+  "onboarding": false,
+  "requireConfig": "ignored",
+
+  "major": {
+    "rangeStrategy": "replace",
+    "fetchReleaseNotes": true
+  },
+
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "5"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchCurrentVersion": "< 1.0.0",
+      "rangeStrategy": "replace",
+      "groupName": "maybe breaking updates",
+      "groupSlug": "maybe-breaking-patch",
+      "fetchReleaseNotes": true
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "groupName": "typescript"
+    }
+  ]
+}

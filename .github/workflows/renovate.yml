@@ -1,0 +1,20 @@
+name: Run Renovate to update NPM Dependencies
+on:
+  schedule:
+    - cron: "0 12 * * Mon" # Every Monday at 12pm
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: "main"
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v40.1.2
+        with:
+          configurationFile: .github/renovate.json5
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          LOG_LEVEL: "debug"
